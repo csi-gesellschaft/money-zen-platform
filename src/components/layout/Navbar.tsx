@@ -3,16 +3,18 @@ import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, 
 import { RoundButton } from "../ui/RoundButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { name: "Dashboard", icon: <Layers className="h-4 w-4" />, active: true },
-    { name: "Transactions", icon: <CreditCard className="h-4 w-4" /> },
-    { name: "Budgets", icon: <LineChart className="h-4 w-4" /> },
-    { name: "Accounts", icon: <Landmark className="h-4 w-4" /> },
+    { name: "Dashboard", icon: <Layers className="h-4 w-4" />, path: "/" },
+    { name: "Transactions", icon: <CreditCard className="h-4 w-4" />, path: "/transactions" },
+    { name: "Budgets", icon: <LineChart className="h-4 w-4" />, path: "/budgets" },
+    { name: "Accounts", icon: <Landmark className="h-4 w-4" />, path: "/accounts" },
   ];
 
   return (
@@ -20,28 +22,28 @@ export const Navbar = () => {
       <div className="flex h-16 items-center px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-semibold text-purple-dark flex items-center">
+            <Link to="/" className="text-xl font-semibold text-purple-dark flex items-center">
               <span className="bg-purple text-white p-1 rounded-md mr-2">Fin</span>
               <span>Track</span>
-            </h1>
+            </Link>
           </div>
         </div>
         
         {!isMobile && (
           <nav className="ml-10 flex items-center space-x-4">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href="#"
+                to={item.path}
                 className={`flex items-center px-3 py-1.5 text-sm font-medium transition-colors hover:text-foreground ${
-                  item.active 
+                  location.pathname === item.path 
                     ? "text-foreground rounded-full bg-accent"
                     : "text-muted-foreground"
                 }`}
               >
                 {item.icon}
                 <span className="ml-2">{item.name}</span>
-              </a>
+              </Link>
             ))}
           </nav>
         )}
@@ -84,18 +86,19 @@ export const Navbar = () => {
                 <div className="absolute top-16 right-0 w-full bg-background border-b z-50 animate-in">
                   <nav className="px-4 py-2 flex flex-col space-y-2">
                     {navItems.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href="#"
+                        to={item.path}
                         className={`flex items-center px-3 py-3 text-sm font-medium transition-colors hover:text-foreground ${
-                          item.active 
+                          location.pathname === item.path
                             ? "text-foreground bg-accent rounded-md"
                             : "text-muted-foreground"
                         }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.icon}
                         <span className="ml-2">{item.name}</span>
-                      </a>
+                      </Link>
                     ))}
                     <div className="border-t my-2"></div>
                     <a href="#" className="flex items-center px-3 py-3 text-sm font-medium text-muted-foreground">
