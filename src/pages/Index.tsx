@@ -6,13 +6,17 @@ import { ExpenseChart } from "@/components/dashboard/ExpenseChart";
 import { BudgetOverview } from "@/components/dashboard/BudgetOverview";
 import { GoalTracker } from "@/components/dashboard/GoalTracker";
 import { InsightCard } from "@/components/insights/InsightCard";
-import { BadgeInfo, Filter } from "lucide-react";
+import { BadgeInfo, Download, Filter, Plus, RefreshCcw, Settings } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const Index = () => {
   const isMobile = useIsMobile();
+  const [isRefreshing, setIsRefreshing] = useState(false);
   
   useEffect(() => {
     // Welcome toast
@@ -29,6 +33,16 @@ const Index = () => {
     });
   };
   
+  const handleRefreshData = () => {
+    setIsRefreshing(true);
+    
+    // Simulate data refresh
+    setTimeout(() => {
+      setIsRefreshing(false);
+      toast.success("Dashboard data refreshed");
+    }, 1500);
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -42,13 +56,53 @@ const Index = () => {
             </div>
             
             <div className="flex gap-3 mt-4 sm:mt-0">
-              <RoundButton variant="outline" onClick={showFeatureNotAvailable}>
-                <Filter className="mr-2 h-4 w-4" />
-                Filter
+              <RoundButton variant="outline" onClick={handleRefreshData} disabled={isRefreshing}>
+                <RefreshCcw className={`mr-2 h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+                {isRefreshing ? 'Refreshing...' : 'Refresh'}
               </RoundButton>
-              <RoundButton onClick={showFeatureNotAvailable}>
-                + Add Transaction
-              </RoundButton>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <RoundButton variant="outline">
+                    <Filter className="mr-2 h-4 w-4" />
+                    Filter
+                  </RoundButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => toast.info("Showing data for the current month")}>
+                    This Month
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => toast.info("Showing data for the last 3 months")}>
+                    Last 3 Months
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => toast.info("Showing data for the current year")}>
+                    This Year
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={showFeatureNotAvailable}>
+                    Custom Range...
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <RoundButton>
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add New
+                  </RoundButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => window.location.href = '/transactions'}>
+                    Add Transaction
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/budgets'}>
+                    Add Budget
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => window.location.href = '/accounts'}>
+                    Add Account
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
           
@@ -66,6 +120,72 @@ const Index = () => {
           
           <div className="mt-6">
             <GoalTracker />
+          </div>
+          
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <div>
+                  <CardTitle>Recent Transactions</CardTitle>
+                  <CardDescription>Your latest financial activities</CardDescription>
+                </div>
+                <Link to="/transactions">
+                  <RoundButton variant="ghost" size="sm">View All</RoundButton>
+                </Link>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    { name: 'Grocery Store', amount: -82.35, date: 'Today', category: 'Food' },
+                    { name: 'Salary Deposit', amount: 2750.00, date: 'Yesterday', category: 'Income' },
+                    { name: 'Electric Bill', amount: -94.20, date: '3 days ago', category: 'Utilities' }
+                  ].map((transaction, idx) => (
+                    <div key={idx} className="flex items-center justify-between py-2 border-b last:border-0">
+                      <div>
+                        <div className="font-medium">{transaction.name}</div>
+                        <div className="text-xs text-muted-foreground">{transaction.date} • {transaction.category}</div>
+                      </div>
+                      <div className={`font-medium ${transaction.amount > 0 ? 'text-green' : ''}`}>
+                        {transaction.amount > 0 ? '+' : ''}{transaction.amount.toFixed(2)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <div>
+                  <CardTitle>Actions</CardTitle>
+                  <CardDescription>Quick access to common tasks</CardDescription>
+                </div>
+                <Settings className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/transactions'}>
+                    <Plus className="h-5 w-5 mb-2" />
+                    <span>New Transaction</span>
+                  </RoundButton>
+                  
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/budgets'}>
+                    <Plus className="h-5 w-5 mb-2" />
+                    <span>New Budget</span>
+                  </RoundButton>
+                  
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={showFeatureNotAvailable}>
+                    <Download className="h-5 w-5 mb-2" />
+                    <span>Export Report</span>
+                  </RoundButton>
+                  
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/plans'}>
+                    <BadgeInfo className="h-5 w-5 mb-2" />
+                    <span>Upgrade Plan</span>
+                  </RoundButton>
+                </div>
+              </CardContent>
+            </Card>
           </div>
           
           <div className="mt-6">
@@ -107,12 +227,12 @@ const Index = () => {
             <p>© {new Date().getFullYear()} FinTrack. All rights reserved.</p>
             <p className="mt-1">
               Pro version available with advanced features. 
-              <button 
-                onClick={showFeatureNotAvailable}
+              <Link
+                to="/plans"
                 className="ml-1 text-purple hover:underline"
               >
                 Upgrade Now
-              </button>
+              </Link>
             </p>
           </footer>
         </div>

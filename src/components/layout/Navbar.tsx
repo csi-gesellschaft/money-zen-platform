@@ -1,5 +1,5 @@
 
-import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, User } from "lucide-react";
+import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, User, DollarSign } from "lucide-react";
 import { RoundButton } from "../ui/RoundButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
@@ -15,6 +15,7 @@ export const Navbar = () => {
     { name: "Transactions", icon: <CreditCard className="h-4 w-4" />, path: "/transactions" },
     { name: "Budgets", icon: <LineChart className="h-4 w-4" />, path: "/budgets" },
     { name: "Accounts", icon: <Landmark className="h-4 w-4" />, path: "/accounts" },
+    { name: "Plans", icon: <DollarSign className="h-4 w-4" />, path: "/plans" },
   ];
 
   return (
@@ -64,12 +65,16 @@ export const Navbar = () => {
                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red animate-pulse" />
               </RoundButton>
-              <RoundButton variant="ghost" size="sm" aria-label="Settings">
-                <Settings className="h-4 w-4" />
-              </RoundButton>
-              <RoundButton variant="ghost" size="sm" aria-label="User">
-                <User className="h-4 w-4" />
-              </RoundButton>
+              <Link to="/settings">
+                <RoundButton variant="ghost" size="sm" aria-label="Settings">
+                  <Settings className="h-4 w-4" />
+                </RoundButton>
+              </Link>
+              <Link to="/profile">
+                <RoundButton variant="ghost" size="sm" aria-label="User">
+                  <User className="h-4 w-4" />
+                </RoundButton>
+              </Link>
               <div className="ml-4 h-8 w-8 rounded-full bg-purple flex items-center justify-center text-white text-sm font-medium">JD</div>
             </>
           ) : (
@@ -105,14 +110,14 @@ export const Navbar = () => {
                       <Bell className="h-4 w-4 mr-2" />
                       <span>Notifications</span>
                     </a>
-                    <a href="#" className="flex items-center px-3 py-3 text-sm font-medium text-muted-foreground">
+                    <Link to="/settings" className="flex items-center px-3 py-3 text-sm font-medium text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
                       <Settings className="h-4 w-4 mr-2" />
                       <span>Settings</span>
-                    </a>
-                    <a href="#" className="flex items-center px-3 py-3 text-sm font-medium text-muted-foreground">
+                    </Link>
+                    <Link to="/profile" className="flex items-center px-3 py-3 text-sm font-medium text-muted-foreground" onClick={() => setIsMobileMenuOpen(false)}>
                       <User className="h-4 w-4 mr-2" />
                       <span>Profile</span>
-                    </a>
+                    </Link>
                   </nav>
                 </div>
               )}
