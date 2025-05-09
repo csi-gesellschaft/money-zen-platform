@@ -1,5 +1,5 @@
 
-import { Bell, CreditCard, Help, Landmark, Layers, LineChart, Menu, Search, Settings, User } from "lucide-react";
+import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, User } from "lucide-react";
 import { RoundButton } from "../ui/RoundButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
@@ -65,8 +65,8 @@ export const Navbar = () => {
               <RoundButton variant="ghost" size="sm" aria-label="Settings">
                 <Settings className="h-4 w-4" />
               </RoundButton>
-              <RoundButton variant="ghost" size="sm" aria-label="Help">
-                <Help className="h-4 w-4" />
+              <RoundButton variant="ghost" size="sm" aria-label="User">
+                <User className="h-4 w-4" />
               </RoundButton>
               <div className="ml-4 h-8 w-8 rounded-full bg-purple flex items-center justify-center text-white text-sm font-medium">JD</div>
             </>
