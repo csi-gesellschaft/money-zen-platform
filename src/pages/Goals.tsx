@@ -7,7 +7,7 @@ import { RoundButton } from "@/components/ui/RoundButton";
 import { Target, Plus, Filter, RefreshCcw } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const Goals = () => {
   const isMobile = useIsMobile();
@@ -61,25 +61,28 @@ const Goals = () => {
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
                     <DialogTitle>Filter Goals</DialogTitle>
+                    <DialogDescription>
+                      Select which goals you want to display.
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <RoundButton 
                       onClick={() => handleFilterChange('all')} 
-                      variant={filterType === 'all' ? 'default' : 'outline'}
+                      variant={filterType === 'all' ? 'primary' : 'outline'}
                       className="w-full justify-center"
                     >
                       All Goals
                     </RoundButton>
                     <RoundButton 
                       onClick={() => handleFilterChange('active')} 
-                      variant={filterType === 'active' ? 'default' : 'outline'}
+                      variant={filterType === 'active' ? 'primary' : 'outline'}
                       className="w-full justify-center"
                     >
                       Active Goals
                     </RoundButton>
                     <RoundButton 
                       onClick={() => handleFilterChange('completed')} 
-                      variant={filterType === 'completed' ? 'default' : 'outline'}
+                      variant={filterType === 'completed' ? 'primary' : 'outline'}
                       className="w-full justify-center"
                     >
                       Completed Goals
@@ -101,6 +104,9 @@ const Goals = () => {
             <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
               <DialogHeader>
                 <DialogTitle>Create New Financial Goal</DialogTitle>
+                <DialogDescription>
+                  Set up a new financial goal to track your savings progress.
+                </DialogDescription>
               </DialogHeader>
               <GoalForm onSuccess={() => setIsAddGoalOpen(false)} />
             </DialogContent>
