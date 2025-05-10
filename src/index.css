@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 255 80% 75%;
+    --primary: 240 80% 60%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -33,7 +33,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 255 80% 75%;
+    --ring: 240 80% 60%;
 
     --radius: 1rem;
   }
@@ -48,7 +48,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 255 80% 75%;
+    --primary: 240 80% 60%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -96,9 +96,65 @@
 }
 
 .trend-up {
-  color: #22c55e;
+  color: #0CCE6B;
 }
 
 .trend-down {
-  color: #ef4444;
+  color: #FF6B6B;
+}
+
+/* Card hover effects */
+.hover-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Button hover animations */
+.btn-pulse:hover {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(108, 92, 231, 0);
+  }
+}
+
+/* Gradient background options */
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #6C5CE7 0%, #8E8FFA 100%);
+}
+
+.bg-gradient-blue {
+  background: linear-gradient(135deg, #0984E3 0%, #74B9FF 100%);
+}
+
+.bg-gradient-green {
+  background: linear-gradient(135deg, #0CCE6B 0%, #55EFC4 100%);
+}
+
+.bg-gradient-orange {
+  background: linear-gradient(135deg, #E17055 0%, #FDCB6E 100%);
+}
+
+/* Card glass effect */
+.glass-card {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-card {
+  background-color: rgba(30, 30, 40, 0.8);
+  border: 1px solid rgba(50, 50, 70, 0.3);
 }

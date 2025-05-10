@@ -60,12 +60,24 @@ const transactionData = [
   },
 ];
 
-export const TransactionsList = () => {
+interface TransactionsListProps {
+  filter?: 'all' | 'income' | 'expense';
+}
+
+export const TransactionsList: React.FC<TransactionsListProps> = ({ filter = 'all' }) => {
   const isMobile = useIsMobile();
   const [transactions] = useState(transactionData);
   
+  // Filter transactions based on the filter prop
+  const filteredTransactions = transactions.filter(transaction => {
+    if (filter === 'all') return true;
+    if (filter === 'income') return transaction.amount > 0;
+    if (filter === 'expense') return transaction.amount < 0;
+    return true;
+  });
+  
   // Get unique dates to group transactions
-  const uniqueDates = [...new Set(transactions.map(t => t.date))].sort().reverse();
+  const uniqueDates = [...new Set(filteredTransactions.map(t => t.date))].sort().reverse();
   
   return (
     <div className="space-y-6">
@@ -81,7 +93,7 @@ export const TransactionsList = () => {
           </h3>
           
           <div className="space-y-3">
-            {transactions
+            {filteredTransactions
               .filter(t => t.date === date)
               .map(transaction => (
                 <div key={transaction.id} className="flex items-center justify-between p-3 hover:bg-accent rounded-lg transition-colors">

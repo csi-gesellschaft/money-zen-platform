@@ -53,31 +53,39 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom colors
+				// Updated custom colors with modern palette
 				purple: {
-					light: '#E5DEFF',
-					DEFAULT: '#9b87f5',
-					dark: '#7E69AB',
+					light: '#EDE9FF',
+					DEFAULT: '#6C5CE7',
+					dark: '#5541D9',
 				},
 				green: {
-					light: '#F2FCE2',
-					DEFAULT: '#22c55e',
+					light: '#E3FCEF',
+					DEFAULT: '#0CCE6B',
 				},
 				yellow: {
-					light: '#FEF7CD',
-					DEFAULT: '#eab308',
+					light: '#FFF8E1',
+					DEFAULT: '#FDCB6E',
 				},
 				blue: {
-					light: '#D3E4FD',
-					DEFAULT: '#0EA5E9',
+					light: '#E3F2FD',
+					DEFAULT: '#0984E3',
 				},
 				red: {
-					light: '#FFDEE2',
-					DEFAULT: '#ef4444',
+					light: '#FFE6E6',
+					DEFAULT: '#FF6B6B',
 				},
 				orange: {
-					light: '#FDE1D3',
-					DEFAULT: '#F97316',
+					light: '#FFEDE3',
+					DEFAULT: '#E17055',
+				},
+				teal: {
+					light: '#E0F7FA',
+					DEFAULT: '#00CEC9',
+				},
+				indigo: {
+					light: '#E8EAF6',
+					DEFAULT: '#546DE5',
 				},
 			},
 			borderRadius: {

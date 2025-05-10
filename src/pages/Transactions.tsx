@@ -4,20 +4,83 @@ import { Navbar } from "@/components/layout/Navbar";
 import { TransactionsList } from "@/components/transactions/TransactionsList";
 import { TransactionForm } from "@/components/transactions/TransactionForm";
 import { RoundButton } from "@/components/ui/RoundButton";
-import { Plus, Filter, ArrowUpDown } from "lucide-react";
+import { Plus, Filter, ArrowUpDown, FileText, Download } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import { exportToCSV, generateDetailedReport, generateSimpleReport } from "@/utils/reportExport";
+
+// Sample transaction data for export purposes
+const transactionData = [
+  {
+    id: "1",
+    title: "Grocery Shopping",
+    amount: -120.50,
+    date: "2025-05-08",
+    category: "Groceries",
+    account: "Main Checking",
+  },
+  {
+    id: "2",
+    title: "Salary Deposit",
+    amount: 3500.00,
+    date: "2025-05-01",
+    category: "Income",
+    account: "Main Checking",
+  },
+  {
+    id: "3",
+    title: "Coffee Shop",
+    amount: -5.75,
+    date: "2025-05-07",
+    category: "Dining",
+    account: "Credit Card",
+  },
+  {
+    id: "4",
+    title: "Rent Payment",
+    amount: -1200.00,
+    date: "2025-05-05",
+    category: "Housing",
+    account: "Main Checking",
+  },
+  {
+    id: "5",
+    title: "Car Insurance",
+    amount: -89.99,
+    date: "2025-05-03",
+    category: "Insurance",
+    account: "Savings",
+  },
+];
 
 const Transactions = () => {
   const isMobile = useIsMobile();
   const [isTransactionFormOpen, setIsTransactionFormOpen] = useState(false);
   const [filterType, setFilterType] = useState<'all' | 'income' | 'expense'>('all');
+  const [isExportMenuOpen, setIsExportMenuOpen] = useState(false);
 
   const handleFilterChange = (type: 'all' | 'income' | 'expense') => {
     setFilterType(type);
     toast.info(`Showing ${type} transactions`);
+  };
+
+  const handleExportSimple = () => {
+    generateSimpleReport(
+      transactionData,
+      { fileName: 'transactions', title: 'Transactions Report' },
+      ['id', 'title', 'amount', 'date']
+    );
+    toast.success('Simple transactions report exported');
+  };
+
+  const handleExportDetailed = () => {
+    generateDetailedReport(
+      transactionData,
+      { fileName: 'transactions', title: 'Detailed Transactions Report' }
+    );
+    toast.success('Detailed transactions report exported');
   };
 
   return (
@@ -60,7 +123,27 @@ const Transactions = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <RoundButton onClick={() => setIsTransactionFormOpen(true)}>
+
+              <DropdownMenu open={isExportMenuOpen} onOpenChange={setIsExportMenuOpen}>
+                <DropdownMenuTrigger asChild>
+                  <RoundButton variant="outline" className="bg-gradient-blue text-white hover:opacity-90">
+                    <Download className="mr-2 h-4 w-4" />
+                    Export
+                  </RoundButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={handleExportSimple}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    Simple Report
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleExportDetailed}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    Detailed Report
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
+              <RoundButton onClick={() => setIsTransactionFormOpen(true)} className="bg-gradient-purple text-white hover:opacity-90">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Transaction
               </RoundButton>
