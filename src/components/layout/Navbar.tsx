@@ -1,5 +1,5 @@
 
-import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, User, DollarSign } from "lucide-react";
+import { Bell, CreditCard, Landmark, Layers, LineChart, Menu, Search, Settings, User, DollarSign, Target } from "lucide-react";
 import { RoundButton } from "../ui/RoundButton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
@@ -14,6 +14,7 @@ export const Navbar = () => {
     { name: "Dashboard", icon: <Layers className="h-4 w-4" />, path: "/" },
     { name: "Transactions", icon: <CreditCard className="h-4 w-4" />, path: "/transactions" },
     { name: "Budgets", icon: <LineChart className="h-4 w-4" />, path: "/budgets" },
+    { name: "Goals", icon: <Target className="h-4 w-4" />, path: "/goals" },
     { name: "Accounts", icon: <Landmark className="h-4 w-4" />, path: "/accounts" },
     { name: "Plans", icon: <DollarSign className="h-4 w-4" />, path: "/plans" },
   ];

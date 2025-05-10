@@ -1,12 +1,14 @@
 
-import React, { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { Calendar, ChevronDown, Filter } from 'lucide-react';
+import React, { useState, useCallback } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
+import { Calendar, ChevronDown, Filter, Download, RefreshCcw } from 'lucide-react';
 import { RoundButton } from '../ui/RoundButton';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { toast } from 'sonner';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 // Sample data
-const data = [
+const monthlyData = [
   { name: 'Jan', amount: 2400 },
   { name: 'Feb', amount: 1398 },
   { name: 'Mar', amount: 9800 },
@@ -21,6 +23,16 @@ const data = [
   { name: 'Dec', amount: 7800 },
 ];
 
+const weeklyData = [
+  { name: 'Mon', amount: 500 },
+  { name: 'Tue', amount: 650 },
+  { name: 'Wed', amount: 400 },
+  { name: 'Thu', amount: 720 },
+  { name: 'Fri', amount: 980 },
+  { name: 'Sat', amount: 1200 },
+  { name: 'Sun', amount: 850 },
+];
+
 const categoryData = [
   { name: 'Housing', value: 1200, color: '#9b87f5' },
   { name: 'Food', value: 850, color: '#F97316' },
@@ -29,6 +41,8 @@ const categoryData = [
   { name: 'Shopping', value: 540, color: '#eab308' },
   { name: 'Others', value: 280, color: '#ef4444' },
 ];
+
+const timeRanges = ['This Week', 'This Month', 'This Quarter', 'This Year', 'Custom Range'];
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
@@ -43,7 +57,49 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 export const ExpenseChart = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'categories'>('overview');
+  const [timeRange, setTimeRange] = useState('This Year');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [chartData, setChartData] = useState(monthlyData);
   const isMobile = useIsMobile();
+  
+  const refreshData = useCallback(() => {
+    setIsRefreshing(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      // Randomize data for demo purposes
+      const updatedData = chartData.map(item => ({
+        ...item,
+        amount: Math.floor(Math.random() * 10000)
+      }));
+      
+      setChartData(updatedData);
+      setIsRefreshing(false);
+      toast.success("Chart data refreshed");
+    }, 1000);
+  }, [chartData]);
+
+  const handleTimeRangeChange = (range: string) => {
+    setTimeRange(range);
+    
+    // Update chart data based on selected time range
+    if (range === 'This Week') {
+      setChartData(weeklyData);
+    } else {
+      setChartData(monthlyData);
+    }
+    
+    toast.info(`Showing data for ${range.toLowerCase()}`);
+  };
+
+  const handleExportData = () => {
+    toast.success("Exporting data...");
+    
+    // In a real app, this would trigger a CSV download
+    setTimeout(() => {
+      toast.info("Data exported successfully");
+    }, 1000);
+  };
   
   return (
     <div className="border rounded-xl p-5 bg-background">
@@ -54,14 +110,37 @@ export const ExpenseChart = () => {
         </div>
         
         <div className="flex items-center gap-2 mt-3 sm:mt-0">
-          <RoundButton variant="outline" size="sm" className="text-xs">
-            <Calendar className="mr-1 h-3 w-3" />
-            This Year
-            <ChevronDown className="ml-1 h-3 w-3" />
+          <Popover>
+            <PopoverTrigger asChild>
+              <RoundButton variant="outline" size="sm" className="text-xs">
+                <Calendar className="mr-1 h-3 w-3" />
+                {timeRange}
+                <ChevronDown className="ml-1 h-3 w-3" />
+              </RoundButton>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-2">
+              <div className="flex flex-col space-y-1">
+                {timeRanges.map((range) => (
+                  <button
+                    key={range}
+                    className={`px-3 py-1.5 text-sm text-left hover:bg-accent rounded-md ${
+                      timeRange === range ? 'bg-accent/50 font-medium' : ''
+                    }`}
+                    onClick={() => handleTimeRangeChange(range)}
+                  >
+                    {range}
+                  </button>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
+          
+          <RoundButton variant="ghost" size="sm" onClick={refreshData} disabled={isRefreshing}>
+            <RefreshCcw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </RoundButton>
           
-          <RoundButton variant="ghost" size="sm">
-            <Filter className="h-4 w-4" />
+          <RoundButton variant="ghost" size="sm" onClick={handleExportData}>
+            <Download className="h-4 w-4" />
           </RoundButton>
         </div>
       </div>
@@ -98,7 +177,7 @@ export const ExpenseChart = () => {
       {activeTab === 'overview' ? (
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} margin={{ top: 5, right: 20, bottom: 25, left: 0 }}>
+            <BarChart data={chartData} margin={{ top: 5, right: 20, bottom: 25, left: 0 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
               <XAxis 
                 dataKey="name" 
@@ -174,6 +253,11 @@ export const ExpenseChart = () => {
                   <span className="text-sm font-medium">${category.value}</span>
                 </div>
               ))}
+            </div>
+            <div className="mt-5">
+              <RoundButton size="sm" variant="outline" className="w-full" onClick={() => toast.info("Manage spending categories")}>
+                Manage Categories
+              </RoundButton>
             </div>
           </div>
         </div>
