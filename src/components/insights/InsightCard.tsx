@@ -25,9 +25,9 @@ export const InsightCard = ({
       case 'warning':
         return <AlertCircle className="h-5 w-5 text-orange" />;
       case 'success':
-        return <TrendingDown className="h-5 w-5 text-green" />;
+        return <TrendingDown className="h-5 w-5 text-revenue" />;
       default:
-        return <AlertCircle className="h-5 w-5 text-purple" />;
+        return <AlertCircle className="h-5 w-5 text-blue" />;
     }
   };
   
@@ -38,9 +38,9 @@ export const InsightCard = ({
       case 'warning':
         return 'bg-orange-light';
       case 'success':
-        return 'bg-green-light';
+        return 'bg-revenue-light';
       default:
-        return 'bg-purple-light';
+        return 'bg-blue-light';
     }
   };
 

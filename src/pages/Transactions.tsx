@@ -143,7 +143,7 @@ const Transactions = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
-              <RoundButton onClick={() => setIsTransactionFormOpen(true)} className="bg-gradient-purple text-white hover:opacity-90">
+              <RoundButton onClick={() => setIsTransactionFormOpen(true)} className="bg-gradient-blue text-white hover:opacity-90">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Transaction
               </RoundButton>

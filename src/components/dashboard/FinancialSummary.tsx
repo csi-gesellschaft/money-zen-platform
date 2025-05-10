@@ -62,8 +62,8 @@ export const FinancialSummary = () => {
         amount="$24,563.00"
         change="15.3%"
         trend="up"
-        icon={<DollarSign className="h-5 w-5 text-purple" />}
-        bgColor="bg-purple-light"
+        icon={<DollarSign className="h-5 w-5 text-blue" />}
+        bgColor="bg-blue-light"
       />
       
       <SummaryCard 
@@ -71,8 +71,8 @@ export const FinancialSummary = () => {
         amount="$8,350.00"
         change="2.5%"
         trend="up"
-        icon={<Wallet className="h-5 w-5 text-green" />}
-        bgColor="bg-green-light"
+        icon={<Wallet className="h-5 w-5 text-revenue" />}
+        bgColor="bg-revenue-light"
       />
       
       <SummaryCard 
@@ -80,8 +80,8 @@ export const FinancialSummary = () => {
         amount="$5,775.00"
         change="8.2%"
         trend="up"
-        icon={<PiggyBank className="h-5 w-5 text-blue" />}
-        bgColor="bg-blue-light"
+        icon={<PiggyBank className="h-5 w-5 text-investment" />}
+        bgColor="bg-investment-light"
       />
     </div>
   );

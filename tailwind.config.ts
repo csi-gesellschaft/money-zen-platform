@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -53,7 +52,49 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Updated custom colors with modern palette
+				// New color palette
+				blue: {
+					light: '#D5E3FF',
+					DEFAULT: '#4B7CCC',
+					dark: '#3A61A3',
+				},
+				teal: {
+					light: '#E3FEFF',
+					DEFAULT: '#77F2FF',
+					dark: '#5BC2CC',
+				},
+				gray: {
+					light: '#F5F6F8',
+					DEFAULT: '#858D99',
+					dark: '#606A7B',
+				},
+				orange: {
+					light: '#FFE9E0',
+					DEFAULT: '#FF8658',
+					dark: '#E06B42',
+				},
+				brick: {
+					light: '#FFDBD7',
+					DEFAULT: '#CC5948',
+					dark: '#A3463A',
+				},
+				// Colors for financial categories
+				expense: {
+					light: '#FFD7D5',
+					DEFAULT: '#E74C3C',
+					dark: '#C0392B',
+				},
+				revenue: {
+					light: '#D7F9E9',
+					DEFAULT: '#2ECC71',
+					dark: '#27AE60',
+				},
+				investment: {
+					light: '#FFF5E0',
+					DEFAULT: '#E2C9A6',
+					dark: '#C4A484',
+				},
+				// Keep legacy color palette for backward compatibility
 				purple: {
 					light: '#EDE9FF',
 					DEFAULT: '#6C5CE7',
@@ -67,21 +108,9 @@ export default {
 					light: '#FFF8E1',
 					DEFAULT: '#FDCB6E',
 				},
-				blue: {
-					light: '#E3F2FD',
-					DEFAULT: '#0984E3',
-				},
 				red: {
 					light: '#FFE6E6',
 					DEFAULT: '#FF6B6B',
-				},
-				orange: {
-					light: '#FFEDE3',
-					DEFAULT: '#E17055',
-				},
-				teal: {
-					light: '#E0F7FA',
-					DEFAULT: '#00CEC9',
 				},
 				indigo: {
 					light: '#E8EAF6',

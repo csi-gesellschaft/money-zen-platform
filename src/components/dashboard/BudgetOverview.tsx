@@ -11,7 +11,7 @@ const budgetItems = [
     spent: 1200,
     total: 1500,
     percentSpent: 80,
-    color: 'bg-purple',
+    color: 'bg-blue',
   },
   {
     category: 'Groceries',
@@ -25,14 +25,14 @@ const budgetItems = [
     spent: 250,
     total: 350,
     percentSpent: 71,
-    color: 'bg-blue',
+    color: 'bg-teal',
   },
   {
     category: 'Entertainment',
     spent: 180,
     total: 200,
     percentSpent: 90,
-    color: 'bg-green',
+    color: 'bg-brick',
   },
 ];
 
@@ -67,14 +67,14 @@ export const BudgetOverview = () => {
                 <span className="text-sm text-muted-foreground">${item.total}</span>
                 
                 {item.percentSpent >= 90 && (
-                  <div className="ml-2 rounded-full bg-red-light p-1" title="Over budget">
-                    <Info className="h-3 w-3 text-red" />
+                  <div className="ml-2 rounded-full bg-expense-light p-1" title="Over budget">
+                    <Info className="h-3 w-3 text-expense" />
                   </div>
                 )}
               </div>
             </div>
             <Progress value={item.percentSpent} className={`h-2 ${
-              item.percentSpent >= 90 ? 'bg-red-light' : ''
+              item.percentSpent >= 90 ? 'bg-expense-light' : ''
             }`} />
           </div>
         ))}
@@ -88,7 +88,7 @@ export const BudgetOverview = () => {
           </div>
           <div>
             <p className="text-sm text-right text-muted-foreground">Remaining</p>
-            <p className="text-lg font-semibold text-green">$300</p>
+            <p className="text-lg font-semibold text-revenue">$300</p>
           </div>
         </div>
         <Progress value={89} className="h-2 mt-2" />

@@ -18,7 +18,7 @@ const GoalCard = ({ title, icon, saved, target, percentSaved, dueDate }: GoalCar
     <div className="border rounded-lg p-4 transition-all hover:shadow-md">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center">
-          <div className="bg-purple-light p-2 rounded-lg">
+          <div className="bg-investment-light p-2 rounded-lg">
             {icon}
           </div>
           <h3 className="ml-3 font-medium">{title}</h3>
@@ -69,7 +69,7 @@ export const GoalTracker = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <GoalCard 
           title="Down Payment"
-          icon={<Home className="h-4 w-4 text-purple" />}
+          icon={<Home className="h-4 w-4 text-blue" />}
           saved={15000}
           target={60000}
           percentSaved={25}
@@ -87,7 +87,7 @@ export const GoalTracker = () => {
         
         <GoalCard 
           title="Emergency Fund"
-          icon={<Briefcase className="h-4 w-4 text-blue" />}
+          icon={<Briefcase className="h-4 w-4 text-investment" />}
           saved={8500}
           target={10000}
           percentSaved={85}
@@ -96,7 +96,7 @@ export const GoalTracker = () => {
         
         <GoalCard 
           title="New Car"
-          icon={<Car className="h-4 w-4 text-green" />}
+          icon={<Car className="h-4 w-4 text-revenue" />}
           saved={12000}
           target={30000}
           percentSaved={40}
