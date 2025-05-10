@@ -6,9 +6,10 @@ import { AccountForm } from "@/components/accounts/AccountForm";
 import { RoundButton } from "@/components/ui/RoundButton";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const Accounts = () => {
-  const [showAccountForm, setShowAccountForm] = useState(false);
+  const [isAccountFormOpen, setIsAccountFormOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -23,23 +24,32 @@ const Accounts = () => {
             </div>
             
             <div className="mt-4 sm:mt-0">
-              <RoundButton onClick={() => setShowAccountForm(true)}>
+              <RoundButton onClick={() => setIsAccountFormOpen(true)}>
                 <Plus className="mr-2 h-4 w-4" />
                 Add Account
               </RoundButton>
             </div>
           </div>
           
-          {showAccountForm && (
-            <div className="mb-6">
-              <AccountForm onCancel={() => setShowAccountForm(false)} onSuccess={() => {
-                setShowAccountForm(false);
-                toast.success("Account added successfully");
-              }} />
-            </div>
-          )}
-          
           <AccountsList />
+          
+          <Dialog open={isAccountFormOpen} onOpenChange={setIsAccountFormOpen}>
+            <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
+              <DialogHeader>
+                <DialogTitle>Add New Account</DialogTitle>
+                <DialogDescription>
+                  Connect a new financial account to track your balance and transactions.
+                </DialogDescription>
+              </DialogHeader>
+              <AccountForm 
+                onCancel={() => setIsAccountFormOpen(false)} 
+                onSuccess={() => {
+                  setIsAccountFormOpen(false);
+                  toast.success("Account added successfully");
+                }} 
+              />
+            </DialogContent>
+          </Dialog>
         </div>
       </main>
     </div>

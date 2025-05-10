@@ -4,13 +4,21 @@ import { Navbar } from "@/components/layout/Navbar";
 import { TransactionsList } from "@/components/transactions/TransactionsList";
 import { TransactionForm } from "@/components/transactions/TransactionForm";
 import { RoundButton } from "@/components/ui/RoundButton";
-import { Plus, Filter } from "lucide-react";
+import { Plus, Filter, ArrowUpDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const Transactions = () => {
   const isMobile = useIsMobile();
-  const [showTransactionForm, setShowTransactionForm] = useState(false);
+  const [isTransactionFormOpen, setIsTransactionFormOpen] = useState(false);
+  const [filterType, setFilterType] = useState<'all' | 'income' | 'expense'>('all');
+
+  const handleFilterChange = (type: 'all' | 'income' | 'expense') => {
+    setFilterType(type);
+    toast.info(`Showing ${type} transactions`);
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -25,27 +33,59 @@ const Transactions = () => {
             </div>
             
             <div className="flex gap-3 mt-4 sm:mt-0">
-              <RoundButton variant="outline">
-                <Filter className="mr-2 h-4 w-4" />
-                Filter
-              </RoundButton>
-              <RoundButton onClick={() => setShowTransactionForm(true)}>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <RoundButton variant="outline">
+                    <Filter className="mr-2 h-4 w-4" />
+                    Filter
+                  </RoundButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => handleFilterChange('all')}>
+                    All Transactions
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleFilterChange('income')}>
+                    Income Only
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleFilterChange('expense')}>
+                    Expenses Only
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => toast.info("Sort by date applied")}>
+                    <ArrowUpDown className="mr-2 h-4 w-4" />
+                    Sort by Date
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => toast.info("Sort by amount applied")}>
+                    <ArrowUpDown className="mr-2 h-4 w-4" />
+                    Sort by Amount
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <RoundButton onClick={() => setIsTransactionFormOpen(true)}>
                 <Plus className="mr-2 h-4 w-4" />
                 Add Transaction
               </RoundButton>
             </div>
           </div>
           
-          {showTransactionForm && (
-            <div className="mb-6">
-              <TransactionForm onCancel={() => setShowTransactionForm(false)} onSuccess={() => {
-                setShowTransactionForm(false);
-                toast.success("Transaction added successfully");
-              }} />
-            </div>
-          )}
+          <TransactionsList filter={filterType} />
           
-          <TransactionsList />
+          <Dialog open={isTransactionFormOpen} onOpenChange={setIsTransactionFormOpen}>
+            <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
+              <DialogHeader>
+                <DialogTitle>Add New Transaction</DialogTitle>
+                <DialogDescription>
+                  Record a new financial transaction for your account.
+                </DialogDescription>
+              </DialogHeader>
+              <TransactionForm 
+                onCancel={() => setIsTransactionFormOpen(false)} 
+                onSuccess={() => {
+                  setIsTransactionFormOpen(false);
+                  toast.success("Transaction added successfully");
+                }} 
+              />
+            </DialogContent>
+          </Dialog>
         </div>
       </main>
     </div>

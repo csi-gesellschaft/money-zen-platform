@@ -1,4 +1,3 @@
-
 import { RoundButton } from "@/components/ui/RoundButton";
 import { Navbar } from "@/components/layout/Navbar";
 import { FinancialSummary } from "@/components/dashboard/FinancialSummary";
@@ -10,13 +9,17 @@ import { BadgeInfo, Download, Filter, Plus, RefreshCcw, Settings } from "lucide-
 import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { GoalForm } from "@/components/goals/GoalForm";
 
 const Index = () => {
   const isMobile = useIsMobile();
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isAddGoalOpen, setIsAddGoalOpen] = useState(false);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Welcome toast
@@ -41,6 +44,10 @@ const Index = () => {
       setIsRefreshing(false);
       toast.success("Dashboard data refreshed");
     }, 1500);
+  };
+
+  const handleGoToPage = (path: string) => {
+    navigate(path);
   };
 
   return (
@@ -92,13 +99,16 @@ const Index = () => {
                   </RoundButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => window.location.href = '/transactions'}>
+                  <DropdownMenuItem onClick={() => handleGoToPage('/transactions')}>
                     Add Transaction
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => window.location.href = '/budgets'}>
+                  <DropdownMenuItem onClick={() => handleGoToPage('/budgets')}>
                     Add Budget
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => window.location.href = '/accounts'}>
+                  <DropdownMenuItem onClick={() => setIsAddGoalOpen(true)}>
+                    Add Goal
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleGoToPage('/accounts')}>
                     Add Account
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -164,12 +174,12 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
-                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/transactions'}>
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => handleGoToPage('/transactions')}>
                     <Plus className="h-5 w-5 mb-2" />
                     <span>New Transaction</span>
                   </RoundButton>
                   
-                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/budgets'}>
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => handleGoToPage('/budgets')}>
                     <Plus className="h-5 w-5 mb-2" />
                     <span>New Budget</span>
                   </RoundButton>
@@ -179,7 +189,7 @@ const Index = () => {
                     <span>Export Report</span>
                   </RoundButton>
                   
-                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => window.location.href = '/plans'}>
+                  <RoundButton variant="outline" className="h-auto py-4 flex flex-col items-center justify-center" onClick={() => handleGoToPage('/plans')}>
                     <BadgeInfo className="h-5 w-5 mb-2" />
                     <span>Upgrade Plan</span>
                   </RoundButton>
@@ -237,6 +247,23 @@ const Index = () => {
           </footer>
         </div>
       </main>
+
+      <Dialog open={isAddGoalOpen} onOpenChange={setIsAddGoalOpen}>
+        <DialogContent className="sm:max-w-[600px] overflow-y-auto max-h-[90vh]">
+          <DialogHeader>
+            <DialogTitle>Create New Financial Goal</DialogTitle>
+            <DialogDescription>
+              Set up a new financial goal to track your savings progress.
+            </DialogDescription>
+          </DialogHeader>
+          <GoalForm onSuccess={() => {
+            setIsAddGoalOpen(false);
+            toast.success("Goal created successfully!");
+            // Navigate to goals page after a short delay so user can see the success message
+            setTimeout(() => navigate('/goals'), 1000);
+          }} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

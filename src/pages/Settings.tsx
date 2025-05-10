@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,11 +9,35 @@ import { RoundButton } from "@/components/ui/RoundButton";
 import { toast } from "sonner";
 import { Bell, Moon, PaletteIcon, Shield, Sun } from "lucide-react";
 
+// Create theme context provider
+const getInitialTheme = (): 'light' | 'dark' => {
+  // Check if theme is stored in localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme as 'light' | 'dark';
+  }
+  
+  // Check if user prefers dark mode
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  
+  // Default to light mode
+  return 'light';
+};
+
 const Settings = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState<boolean>(getInitialTheme() === 'dark');
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(true);
   const [twoFactorAuth, setTwoFactorAuth] = useState(false);
+  
+  // Apply theme when component mounts and when theme changes
+  useEffect(() => {
+    const theme = darkMode ? 'dark' : 'light';
+    document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('theme', theme);
+  }, [darkMode]);
   
   const handleSaveAppearance = () => {
     toast.success("Appearance settings saved");
@@ -25,6 +49,10 @@ const Settings = () => {
   
   const handleSaveSecurity = () => {
     toast.success("Security settings saved");
+  };
+  
+  const toggleDarkMode = (checked: boolean) => {
+    setDarkMode(checked);
   };
   
   return (
@@ -78,7 +106,7 @@ const Settings = () => {
                     <Switch 
                       id="dark-mode" 
                       checked={darkMode} 
-                      onCheckedChange={setDarkMode}
+                      onCheckedChange={toggleDarkMode}
                     />
                   </div>
                   
