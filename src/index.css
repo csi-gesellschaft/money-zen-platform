@@ -16,24 +16,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 217 55% 54%;
+    --primary: 225 89% 59%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 187 100% 73%;
+    --secondary: 195 90% 59%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 214 10% 89.8%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 18 100% 67%;
+    --accent: 31 100% 55%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 10 71% 54%;
+    --destructive: 355 84% 56%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 217 55% 54%;
+    --ring: 225 89% 59%;
 
     --radius: 1rem;
   }
@@ -48,19 +48,19 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 55% 54%;
+    --primary: 225 89% 59%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 187 100% 73%;
+    --secondary: 195 90% 59%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 18 100% 67%;
+    --accent: 31 100% 55%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 10 71% 54%;
+    --destructive: 355 84% 56%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
@@ -97,11 +97,11 @@
 
 /* Updated financial indicator colors */
 .trend-up {
-  color: #2ECC71; /* revenue green */
+  color: #38B000; /* revenue green */
 }
 
 .trend-down {
-  color: #E74C3C; /* expense red */
+  color: #E63946; /* expense red */
 }
 
 /* Card hover effects */
@@ -121,35 +121,35 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(75, 124, 204, 0.4);
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(75, 124, 204, 0);
+    box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(75, 124, 204, 0);
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
   }
 }
 
 /* Updated gradient background options with new color palette */
 .bg-gradient-blue {
-  background: linear-gradient(135deg, #4B7CCC 0%, #77F2FF 100%);
+  background: linear-gradient(135deg, #4361EE 0%, #48CAE4 100%);
 }
 
 .bg-gradient-orange {
-  background: linear-gradient(135deg, #CC5948 0%, #FF8658 100%);
+  background: linear-gradient(135deg, #E63946 0%, #FF9F1C 100%);
 }
 
 .bg-gradient-revenue {
-  background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+  background: linear-gradient(135deg, #008000 0%, #38B000 100%);
 }
 
 .bg-gradient-expense {
-  background: linear-gradient(135deg, #C0392B 0%, #E74C3C 100%);
+  background: linear-gradient(135deg, #C1121F 0%, #E63946 100%);
 }
 
 .bg-gradient-investment {
-  background: linear-gradient(135deg, #C4A484 0%, #E2C9A6 100%);
+  background: linear-gradient(135deg, #BC8A5F 0%, #D4A373 100%);
 }
 
 /* Card glass effect */
@@ -166,15 +166,15 @@
 
 /* Financial color indicators for text */
 .text-expense {
-  color: #E74C3C;
+  color: #E63946;
 }
 
 .text-revenue {
-  color: #2ECC71;
+  color: #38B000;
 }
 
 .text-investment {
-  color: #E2C9A6;
+  color: #D4A373;
 }
 
 /* Badge styles for financial categories */

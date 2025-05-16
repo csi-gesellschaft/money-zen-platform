@@ -45,7 +45,7 @@ export const InsightCard = ({
   };
 
   return (
-    <div className="border rounded-lg p-5">
+    <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
       <div className="flex items-start">
         <div className={`p-2 rounded-lg ${getBgColor()} mr-4`}>
           {getIcon()}
