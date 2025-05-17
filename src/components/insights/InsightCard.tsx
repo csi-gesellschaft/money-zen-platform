@@ -21,31 +21,31 @@ export const InsightCard = ({
   const getIcon = () => {
     switch (type) {
       case 'info':
-        return <TrendingUp className="h-5 w-5 text-zentrix-accent2" />;
+        return <TrendingUp className="h-5 w-5 text-blue" />;
       case 'warning':
-        return <AlertCircle className="h-5 w-5 text-zentrix-accent4" />;
+        return <AlertCircle className="h-5 w-5 text-investment" />;
       case 'success':
-        return <TrendingDown className="h-5 w-5 text-zentrix-accent1" />;
+        return <TrendingDown className="h-5 w-5 text-revenue" />;
       default:
-        return <AlertCircle className="h-5 w-5 text-zentrix-accent2" />;
+        return <AlertCircle className="h-5 w-5 text-blue" />;
     }
   };
   
   const getBgColor = () => {
     switch (type) {
       case 'info':
-        return 'bg-zentrix-accent2/20';
+        return 'bg-blue/20';
       case 'warning':
-        return 'bg-zentrix-accent4/20';
+        return 'bg-investment/20';
       case 'success':
-        return 'bg-zentrix-accent1/20';
+        return 'bg-revenue/20';
       default:
-        return 'bg-zentrix-accent2/20';
+        return 'bg-blue/20';
     }
   };
 
   return (
-    <div className="border border-white/5 rounded-lg p-5 tech-card animate-fade-in bg-zentrix-card shadow-lg">
+    <div className="border rounded-lg p-5 shadow-sm bg-card">
       <div className="flex items-start">
         <div className={`p-2 rounded-lg ${getBgColor()} mr-4`}>
           {getIcon()}
@@ -59,7 +59,7 @@ export const InsightCard = ({
             variant="ghost" 
             size="sm" 
             onClick={onAction}
-            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-zentrix-accent1 group"
+            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-primary group"
           >
             {actionText}
             <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />

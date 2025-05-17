@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from "@/lib/utils";
 
 interface RoundButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'tech' | 'accent' | 'success' | 'danger';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'success' | 'danger' | 'warning' | 'info';
   size?: 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
 }
@@ -13,12 +13,12 @@ const RoundButton = React.forwardRef<HTMLButtonElement, RoundButtonProps>(
     const variants = {
       primary: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      outline: 'border border-input bg-background hover:bg-accent/10 hover:text-accent-foreground',
-      ghost: 'hover:bg-accent/10 hover:text-accent-foreground',
-      tech: 'bg-zentrix-accent1 text-zentrix-background hover:bg-zentrix-accent1/90 shadow-md shadow-zentrix-accent1/20 transition-colors duration-200 btn-tech',
-      accent: 'bg-zentrix-accent2 text-zentrix-background hover:bg-zentrix-accent2/90 shadow-md shadow-zentrix-accent2/20 transition-colors duration-200 btn-tech',
-      success: 'bg-revenue text-zentrix-background hover:bg-revenue/90 shadow-md shadow-revenue/20 transition-colors duration-200 btn-tech',
-      danger: 'bg-expense text-zentrix-background hover:bg-expense/90 shadow-md shadow-expense/20 transition-colors duration-200 btn-tech',
+      outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+      ghost: 'hover:bg-accent hover:text-accent-foreground',
+      success: 'bg-revenue text-white hover:bg-revenue/90 shadow-sm',
+      danger: 'bg-expense text-white hover:bg-expense/90 shadow-sm',
+      warning: 'bg-investment text-white hover:bg-investment/90 shadow-sm',
+      info: 'bg-blue text-white hover:bg-blue/90 shadow-sm',
     };
 
     const sizes = {
