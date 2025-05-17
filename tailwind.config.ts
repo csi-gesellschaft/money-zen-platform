@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,69 +53,42 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// New color palette
-				blue: {
-					light: '#D5E3FF',
-					DEFAULT: '#4B7CCC',
-					dark: '#3A61A3',
-				},
-				teal: {
-					light: '#E3FEFF',
-					DEFAULT: '#77F2FF',
-					dark: '#5BC2CC',
+				// Tech-inspired color palette
+				charcoal: {
+					light: '#3A3A40',
+					DEFAULT: '#252529',
+					dark: '#1A1A1D',
 				},
 				gray: {
-					light: '#F5F6F8',
-					DEFAULT: '#858D99',
-					dark: '#606A7B',
+					light: '#8A8A8F',
+					DEFAULT: '#606066',
+					dark: '#404045',
 				},
-				orange: {
-					light: '#FFE9E0',
-					DEFAULT: '#FF8658',
-					dark: '#E06B42',
+				crimson: {
+					light: '#FF3B5C',
+					DEFAULT: '#E61E3C',
+					dark: '#C01431',
 				},
-				brick: {
-					light: '#FFDBD7',
-					DEFAULT: '#CC5948',
-					dark: '#A3463A',
+				slate: {
+					light: '#A0B4C8',
+					DEFAULT: '#7A8B9A',
+					dark: '#5D6E7A',
 				},
 				// Colors for financial categories
 				expense: {
-					light: '#FFD7D5',
-					DEFAULT: '#E74C3C',
-					dark: '#C0392B',
+					light: '#FF3B5C',
+					DEFAULT: '#E61E3C',
+					dark: '#C01431',
 				},
 				revenue: {
-					light: '#D7F9E9',
-					DEFAULT: '#2ECC71',
-					dark: '#27AE60',
+					light: '#52DE97',
+					DEFAULT: '#33C17E',
+					dark: '#289F66',
 				},
 				investment: {
-					light: '#FFF5E0',
-					DEFAULT: '#E2C9A6',
-					dark: '#C4A484',
-				},
-				// Keep legacy color palette for backward compatibility
-				purple: {
-					light: '#EDE9FF',
-					DEFAULT: '#6C5CE7',
-					dark: '#5541D9',
-				},
-				green: {
-					light: '#E3FCEF',
-					DEFAULT: '#0CCE6B',
-				},
-				yellow: {
-					light: '#FFF8E1',
-					DEFAULT: '#FDCB6E',
-				},
-				red: {
-					light: '#FFE6E6',
-					DEFAULT: '#FF6B6B',
-				},
-				indigo: {
-					light: '#E8EAF6',
-					DEFAULT: '#546DE5',
+					light: '#E6D2B3',
+					DEFAULT: '#C4B091',
+					dark: '#A08E72',
 				},
 			},
 			borderRadius: {
@@ -146,15 +120,36 @@ export default {
 					'50%': {
 						opacity: '0.8'
 					}
+				},
+				'slide-in': {
+					'0%': {
+						transform: 'translateY(10px)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
+				},
+				'fade-in': {
+					from: {
+						opacity: '0'
+					},
+					to: {
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'pulse-light': 'pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+				'pulse-light': 'pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'slide-in': 'slide-in 0.3s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
 			},
 		}
 	},

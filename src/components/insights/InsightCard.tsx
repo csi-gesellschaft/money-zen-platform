@@ -21,31 +21,31 @@ export const InsightCard = ({
   const getIcon = () => {
     switch (type) {
       case 'info':
-        return <TrendingUp className="h-5 w-5 text-blue" />;
+        return <TrendingUp className="h-5 w-5 text-slate" />;
       case 'warning':
-        return <AlertCircle className="h-5 w-5 text-orange" />;
+        return <AlertCircle className="h-5 w-5 text-crimson" />;
       case 'success':
         return <TrendingDown className="h-5 w-5 text-revenue" />;
       default:
-        return <AlertCircle className="h-5 w-5 text-blue" />;
+        return <AlertCircle className="h-5 w-5 text-slate" />;
     }
   };
   
   const getBgColor = () => {
     switch (type) {
       case 'info':
-        return 'bg-blue-light';
+        return 'bg-slate-dark/30';
       case 'warning':
-        return 'bg-orange-light';
+        return 'bg-crimson-dark/30';
       case 'success':
-        return 'bg-revenue-light';
+        return 'bg-revenue-dark/30';
       default:
-        return 'bg-blue-light';
+        return 'bg-slate-dark/30';
     }
   };
 
   return (
-    <div className="border rounded-lg p-5">
+    <div className="border-tech rounded-lg p-5 tech-card animate-fade-in">
       <div className="flex items-start">
         <div className={`p-2 rounded-lg ${getBgColor()} mr-4`}>
           {getIcon()}
@@ -59,7 +59,7 @@ export const InsightCard = ({
             variant="ghost" 
             size="sm" 
             onClick={onAction}
-            className="text-sm p-0 hover:bg-transparent hover:underline"
+            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-crimson"
           >
             {actionText}
             <ArrowRight className="ml-1 h-3 w-3" />
