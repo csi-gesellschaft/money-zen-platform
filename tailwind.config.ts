@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -53,21 +52,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Tech-inspired color palette
+				// DEXE-inspired color palette
 				charcoal: {
-					light: '#3A3A40',
-					DEFAULT: '#252529',
-					dark: '#1A1A1D',
+					light: '#1E2227',
+					DEFAULT: '#0E1014',
+					dark: '#080A0D',
 				},
 				gray: {
-					light: '#8A8A8F',
-					DEFAULT: '#606066',
-					dark: '#404045',
+					light: '#9BA1AF',
+					DEFAULT: '#5C6272',
+					dark: '#383C48',
 				},
-				crimson: {
-					light: '#FF3B5C',
-					DEFAULT: '#E61E3C',
-					dark: '#C01431',
+				teal: {
+					light: '#7CF7E3',
+					DEFAULT: '#40E1C6',
+					dark: '#2ABEAA',
 				},
 				slate: {
 					light: '#A0B4C8',
@@ -76,7 +75,7 @@ export default {
 				},
 				// Colors for financial categories
 				expense: {
-					light: '#FF3B5C',
+					light: '#FF5B79',
 					DEFAULT: '#E61E3C',
 					dark: '#C01431',
 				},
@@ -90,6 +89,24 @@ export default {
 					DEFAULT: '#C4B091',
 					dark: '#A08E72',
 				},
+				// Alternative names for teal for easier referencing
+				mint: {
+					light: '#7CF7E3',
+					DEFAULT: '#40E1C6',
+					dark: '#2ABEAA',
+				},
+				purple: {
+					// This isn't in the image, but using these values since previous code uses 'purple'
+					light: '#40E1C6',
+					DEFAULT: '#40E1C6',
+					dark: '#2ABEAA',
+				},
+				crimson: {
+					// This isn't in the image, but keeping this since code uses it
+					light: '#FF5B79',
+					DEFAULT: '#E61E3C',
+					dark: '#C01431',
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -23,7 +23,7 @@ export const InsightCard = ({
       case 'info':
         return <TrendingUp className="h-5 w-5 text-slate" />;
       case 'warning':
-        return <AlertCircle className="h-5 w-5 text-crimson" />;
+        return <AlertCircle className="h-5 w-5 text-expense" />;
       case 'success':
         return <TrendingDown className="h-5 w-5 text-revenue" />;
       default:
@@ -34,13 +34,13 @@ export const InsightCard = ({
   const getBgColor = () => {
     switch (type) {
       case 'info':
-        return 'bg-slate-dark/30';
+        return 'bg-teal-dark/30';
       case 'warning':
-        return 'bg-crimson-dark/30';
+        return 'bg-expense-dark/30';
       case 'success':
         return 'bg-revenue-dark/30';
       default:
-        return 'bg-slate-dark/30';
+        return 'bg-teal-dark/30';
     }
   };
 
@@ -59,7 +59,7 @@ export const InsightCard = ({
             variant="ghost" 
             size="sm" 
             onClick={onAction}
-            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-crimson"
+            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-teal"
           >
             {actionText}
             <ArrowRight className="ml-1 h-3 w-3" />

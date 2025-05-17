@@ -15,7 +15,7 @@ const RoundButton = React.forwardRef<HTMLButtonElement, RoundButtonProps>(
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
       ghost: 'hover:bg-accent/10 hover:text-accent-foreground',
-      tech: 'bg-crimson text-white hover:bg-crimson-dark transition-colors duration-200 btn-tech',
+      tech: 'bg-teal text-charcoal hover:bg-teal-dark transition-colors duration-200 btn-tech',
     };
 
     const sizes = {
