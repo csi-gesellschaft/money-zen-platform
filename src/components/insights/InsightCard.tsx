@@ -34,18 +34,18 @@ export const InsightCard = ({
   const getBgColor = () => {
     switch (type) {
       case 'info':
-        return 'bg-blue-light';
+        return 'bg-blue-light dark:bg-blue-dark/30';
       case 'warning':
-        return 'bg-orange-light';
+        return 'bg-orange-light dark:bg-orange-dark/30';
       case 'success':
-        return 'bg-revenue-light';
+        return 'bg-revenue-light dark:bg-revenue-dark/30';
       default:
-        return 'bg-blue-light';
+        return 'bg-blue-light dark:bg-blue-dark/30';
     }
   };
 
   return (
-    <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
+    <div className="border rounded-lg p-5 hover:shadow-md transition-shadow modern-card">
       <div className="flex items-start">
         <div className={`p-2 rounded-lg ${getBgColor()} mr-4`}>
           {getIcon()}
