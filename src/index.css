@@ -7,62 +7,60 @@
 
 @layer base {
   :root {
-    /* Light Theme Variables */
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 221 83% 53%;
+    --primary: 217 55% 54%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 186 86% 40%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 187 100% 73%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 20% 96%;
+    --muted: 214 10% 89.8%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 24 95% 53%;
+    --accent: 18 100% 67%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 10 71% 54%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
+    --ring: 217 55% 54%;
 
     --radius: 1rem;
   }
 
   .dark {
-    /* Dark Theme Variables */
-    --background: 222 47% 11%;
+    --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 217 55% 54%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 186 86% 40%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 187 100% 73%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 24 95% 53%;
+    --accent: 18 100% 67%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 10 71% 54%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
@@ -99,11 +97,11 @@
 
 /* Updated financial indicator colors */
 .trend-up {
-  color: #10B981; /* revenue green */
+  color: #2ECC71; /* revenue green */
 }
 
 .trend-down {
-  color: #EF4444; /* expense red */
+  color: #E74C3C; /* expense red */
 }
 
 /* Card hover effects */
@@ -123,35 +121,35 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 0 0 rgba(75, 124, 204, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 10px rgba(75, 124, 204, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 0 rgba(75, 124, 204, 0);
   }
 }
 
 /* Updated gradient background options with new color palette */
 .bg-gradient-blue {
-  background: linear-gradient(135deg, #2563EB 0%, #14B8A6 100%);
+  background: linear-gradient(135deg, #4B7CCC 0%, #77F2FF 100%);
 }
 
 .bg-gradient-orange {
-  background: linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+  background: linear-gradient(135deg, #CC5948 0%, #FF8658 100%);
 }
 
 .bg-gradient-revenue {
-  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+  background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
 }
 
 .bg-gradient-expense {
-  background: linear-gradient(135deg, #B91C1C 0%, #EF4444 100%);
+  background: linear-gradient(135deg, #C0392B 0%, #E74C3C 100%);
 }
 
 .bg-gradient-investment {
-  background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+  background: linear-gradient(135deg, #C4A484 0%, #E2C9A6 100%);
 }
 
 /* Card glass effect */
@@ -168,15 +166,15 @@
 
 /* Financial color indicators for text */
 .text-expense {
-  color: #EF4444;
+  color: #E74C3C;
 }
 
 .text-revenue {
-  color: #10B981;
+  color: #2ECC71;
 }
 
 .text-investment {
-  color: #F59E0B;
+  color: #E2C9A6;
 }
 
 /* Badge styles for financial categories */
@@ -190,32 +188,4 @@
 
 .badge-investment {
   @apply bg-investment-light text-investment-dark px-2 py-0.5 rounded-full text-xs font-medium;
-}
-
-/* Dark mode specific styles */
-.dark .hover-card:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.dark .bg-card {
-  background-color: hsl(var(--card));
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-/* Modern card styles */
-.modern-card {
-  @apply rounded-xl border bg-card shadow-sm transition-all hover:shadow-md;
-}
-
-.dark .modern-card {
-  @apply border-border/30 shadow-lg shadow-black/10;
-}
-
-/* Modern text styles */
-.heading-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue to-teal;
-}
-
-.dark .heading-gradient {
-  @apply bg-gradient-to-r from-blue-light to-teal-light;
 }

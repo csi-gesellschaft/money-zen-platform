@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -53,69 +52,69 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Modern color palette
+				// New color palette
 				blue: {
-					light: '#E1F0FF',
-					DEFAULT: '#2563EB',
-					dark: '#1E40AF',
+					light: '#D5E3FF',
+					DEFAULT: '#4B7CCC',
+					dark: '#3A61A3',
 				},
 				teal: {
-					light: '#CCFBF1',
-					DEFAULT: '#14B8A6',
-					dark: '#0F766E',
+					light: '#E3FEFF',
+					DEFAULT: '#77F2FF',
+					dark: '#5BC2CC',
 				},
 				gray: {
-					light: '#F9FAFB',
-					DEFAULT: '#64748B',
-					dark: '#334155',
+					light: '#F5F6F8',
+					DEFAULT: '#858D99',
+					dark: '#606A7B',
 				},
 				orange: {
-					light: '#FFEDD5',
-					DEFAULT: '#F97316',
-					dark: '#EA580C',
+					light: '#FFE9E0',
+					DEFAULT: '#FF8658',
+					dark: '#E06B42',
 				},
 				brick: {
-					light: '#FEE2E2',
-					DEFAULT: '#EF4444',
-					dark: '#B91C1C',
+					light: '#FFDBD7',
+					DEFAULT: '#CC5948',
+					dark: '#A3463A',
 				},
-				// Financial categories colors
+				// Colors for financial categories
 				expense: {
-					light: '#FEE2E2',
-					DEFAULT: '#EF4444',
-					dark: '#B91C1C',
+					light: '#FFD7D5',
+					DEFAULT: '#E74C3C',
+					dark: '#C0392B',
 				},
 				revenue: {
-					light: '#DCFCE7',
-					DEFAULT: '#10B981',
-					dark: '#059669',
+					light: '#D7F9E9',
+					DEFAULT: '#2ECC71',
+					dark: '#27AE60',
 				},
 				investment: {
-					light: '#FEF3C7',
-					DEFAULT: '#F59E0B',
-					dark: '#D97706',
+					light: '#FFF5E0',
+					DEFAULT: '#E2C9A6',
+					dark: '#C4A484',
 				},
-				// Legacy colors for compatibility
+				// Keep legacy color palette for backward compatibility
 				purple: {
-					light: '#EDE9FE',
-					DEFAULT: '#8B5CF6',
-					dark: '#6D28D9',
+					light: '#EDE9FF',
+					DEFAULT: '#6C5CE7',
+					dark: '#5541D9',
 				},
 				green: {
-					light: '#DCFCE7',
-					DEFAULT: '#10B981',
+					light: '#E3FCEF',
+					DEFAULT: '#0CCE6B',
 				},
 				yellow: {
-					light: '#FEF3C7',
-					DEFAULT: '#F59E0B',
+					light: '#FFF8E1',
+					DEFAULT: '#FDCB6E',
 				},
 				red: {
-					light: '#FEE2E2',
-					DEFAULT: '#EF4444',
+					light: '#FFE6E6',
+					DEFAULT: '#FF6B6B',
 				},
 				indigo: {
-					light: '#E0E7FF',
-					DEFAULT: '#6366F1',
+					light: '#E8EAF6',
+					DEFAULT: '#546DE5',
 				},
 			},
 			borderRadius: {
