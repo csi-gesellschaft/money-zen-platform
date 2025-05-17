@@ -16,7 +16,11 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
-        tech: "border-teal/30 bg-teal-dark/20 text-teal-light hover:bg-teal-dark/30",
+        tech: "border-zentrix-accent1/30 bg-zentrix-accent1/10 text-zentrix-accent1 hover:bg-zentrix-accent1/20",
+        success: "border-revenue/30 bg-revenue/10 text-revenue hover:bg-revenue/20",
+        warning: "border-investment/30 bg-investment/10 text-investment hover:bg-investment/20",
+        danger: "border-expense/30 bg-expense/10 text-expense hover:bg-expense/20",
+        info: "border-zentrix-accent2/30 bg-zentrix-accent2/10 text-zentrix-accent2 hover:bg-zentrix-accent2/20",
       },
     },
     defaultVariants: {

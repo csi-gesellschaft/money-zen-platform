@@ -52,11 +52,36 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// DEXE-inspired color palette
+				// Zentrix-inspired color palette
+				zentrix: {
+					background: '#0B0D20', // Deep blue background
+					card: '#111936',       // Slightly lighter card background
+					accent1: '#B1FF36',    // Lime green for accents
+					accent2: '#40E1C6',    // Cyan blue for accents
+					accent3: '#F24E76',    // Magenta pink for accents
+					accent4: '#F5D45A',    // Golden yellow for alerts/notifications
+				},
+				// Keep financial category colors
+				expense: {
+					light: '#F24E76', // Changed to match theme
+					DEFAULT: '#E61E3C',
+					dark: '#C01431',
+				},
+				revenue: {
+					light: '#B1FF36', // Changed to match theme
+					DEFAULT: '#90E82E',
+					dark: '#73C825',
+				},
+				investment: {
+					light: '#F5D45A', // Changed to match theme
+					DEFAULT: '#E9BE39',
+					dark: '#C39C24',
+				},
+				// Map previous color names to new theme colors
 				charcoal: {
-					light: '#1E2227',
-					DEFAULT: '#0E1014',
-					dark: '#080A0D',
+					light: '#2D3054',
+					DEFAULT: '#111936',
+					dark: '#0B0D20',
 				},
 				gray: {
 					light: '#9BA1AF',
@@ -64,46 +89,27 @@ export default {
 					dark: '#383C48',
 				},
 				teal: {
-					light: '#7CF7E3',
-					DEFAULT: '#40E1C6',
-					dark: '#2ABEAA',
+					light: '#40E1C6',
+					DEFAULT: '#28C4AD',
+					dark: '#1BA89E',
 				},
 				slate: {
 					light: '#A0B4C8',
 					DEFAULT: '#7A8B9A',
 					dark: '#5D6E7A',
 				},
-				// Colors for financial categories
-				expense: {
-					light: '#FF5B79',
-					DEFAULT: '#E61E3C',
-					dark: '#C01431',
-				},
-				revenue: {
-					light: '#52DE97',
-					DEFAULT: '#33C17E',
-					dark: '#289F66',
-				},
-				investment: {
-					light: '#E6D2B3',
-					DEFAULT: '#C4B091',
-					dark: '#A08E72',
-				},
-				// Alternative names for teal for easier referencing
 				mint: {
-					light: '#7CF7E3',
-					DEFAULT: '#40E1C6',
-					dark: '#2ABEAA',
+					light: '#40E1C6',
+					DEFAULT: '#28C4AD',
+					dark: '#1BA89E',
 				},
 				purple: {
-					// This isn't in the image, but using these values since previous code uses 'purple'
-					light: '#40E1C6',
-					DEFAULT: '#40E1C6',
-					dark: '#2ABEAA',
+					light: '#B290FF',
+					DEFAULT: '#9D6FFF',
+					dark: '#7D4FE0',
 				},
 				crimson: {
-					// This isn't in the image, but keeping this since code uses it
-					light: '#FF5B79',
+					light: '#F24E76',
 					DEFAULT: '#E61E3C',
 					dark: '#C01431',
 				}
@@ -155,6 +161,30 @@ export default {
 					to: {
 						opacity: '1'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 10px rgba(177, 255, 54, 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 20px rgba(177, 255, 54, 0.8)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'neon-pulse': {
+					'0%, 100%': {
+						filter: 'drop-shadow(0 0 5px rgba(64, 225, 198, 0.7))'
+					},
+					'50%': {
+						filter: 'drop-shadow(0 0 15px rgba(64, 225, 198, 1))'
+					}
 				}
 			},
 			animation: {
@@ -162,7 +192,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-light': 'pulse-light 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				'slide-in': 'slide-in 0.3s ease-out',
-				'fade-in': 'fade-in 0.3s ease-out'
+				'fade-in': 'fade-in 0.3s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'neon-pulse': 'neon-pulse 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],

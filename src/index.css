@@ -7,65 +7,67 @@
 
 @layer base {
   :root {
-    --background: 220 15% 95%;
-    --foreground: 220 25% 10%;
+    /* Light theme variables (even though we'll default to dark) */
+    --background: 0 0% 100%;
+    --foreground: 240 25% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 10%;
+    --card-foreground: 240 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 10%;
+    --popover-foreground: 240 25% 10%;
 
-    --primary: 170 73% 56%;
-    --primary-foreground: 210 40% 2%;
+    --primary: 152 78% 54%;
+    --primary-foreground: 240 40% 2%;
 
-    --secondary: 220 16% 36%;
+    --secondary: 240 16% 36%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 10% 92%;
-    --muted-foreground: 220 6% 46%;
+    --muted: 240 10% 92%;
+    --muted-foreground: 240 6% 46%;
 
-    --accent: 170 73% 56%;
-    --accent-foreground: 210 40% 2%;
+    --accent: 152 78% 54%;
+    --accent-foreground: 240 40% 2%;
 
     --destructive: 351 79% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 90%;
-    --input: 220 10% 90%;
-    --ring: 170 73% 56%;
+    --border: 240 10% 90%;
+    --input: 240 10% 90%;
+    --ring: 152 78% 54%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 215 16% 6%;
-    --foreground: 0 0% 90%;
+    /* Dark theme variables based on Zentrix design */
+    --background: 235 44% 9%;  /* Deep blue background */
+    --foreground: 0 0% 100%;
 
-    --card: 215 20% 9%;
-    --card-foreground: 0 0% 90%;
+    --card: 233 44% 14%;  /* Slightly lighter card background */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 215 20% 9%;
-    --popover-foreground: 0 0% 90%;
+    --popover: 233 44% 14%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 170 73% 56%;
-    --primary-foreground: 215 16% 6%;
+    --primary: 84 100% 60%;  /* Lime green primary */
+    --primary-foreground: 235 44% 9%;
 
-    --secondary: 215 14% 19%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 233 35% 25%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 215 14% 13%;
-    --muted-foreground: 215 10% 60%;
+    --muted: 233 35% 19%;
+    --muted-foreground: 240 10% 70%;
 
-    --accent: 170 73% 56%;
-    --accent-foreground: 215 16% 6%;
+    --accent: 173 73% 56%;  /* Cyan accent */
+    --accent-foreground: 235 44% 9%;
 
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 0 0% 90%;
+    --destructive: 343 76% 56%;  /* Magenta destructive */
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 215 14% 15%;
-    --input: 215 14% 15%;
-    --ring: 170 73% 56%;
+    --border: 233 35% 20%;
+    --input: 233 35% 20%;
+    --ring: 84 100% 60%;
   }
 }
 
@@ -77,6 +79,17 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "ss01", "ss02";
+    background-image: radial-gradient(
+      circle at top right,
+      rgba(177, 255, 54, 0.05) 0%,
+      transparent 40%
+    ), 
+    radial-gradient(
+      circle at bottom left,
+      rgba(64, 225, 198, 0.05) 0%,
+      transparent 40%
+    );
+    background-size: 100% 100%;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -108,25 +121,25 @@
   }
 }
 
-/* DEXE-inspired styling classes */
+/* Zentrix-inspired styling classes */
 .glass-panel {
-  @apply bg-charcoal/60 backdrop-blur-sm border border-gray-dark/20;
+  @apply bg-zentrix-card/60 backdrop-blur-sm border border-gray-dark/20;
 }
 
 .hover-glow:hover {
-  @apply shadow-[0_0_15px_rgba(124,247,227,0.3)];
+  @apply shadow-[0_0_15px_rgba(177,255,54,0.3)];
   transition: box-shadow 0.3s ease;
 }
 
 /* Card hover effects with tech-inspired animation */
 .tech-card {
   transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .tech-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(124, 247, 227, 0.2);
+  box-shadow: 0 8px 15px rgba(177, 255, 54, 0.2);
 }
 
 /* Button hover animations */
@@ -142,7 +155,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(124, 247, 227, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(177, 255, 54, 0.2), transparent);
   transition: 0.5s;
 }
 
@@ -152,15 +165,15 @@
 
 /* Financial color indicators for text */
 .text-expense {
-  color: #E61E3C;
+  color: #F24E76;
 }
 
 .text-revenue {
-  color: #33C17E;
+  color: #B1FF36;
 }
 
 .text-investment {
-  color: #C4B091;
+  color: #F5D45A;
 }
 
 /* Badge styles for financial categories */
@@ -178,7 +191,7 @@
 
 /* Gradient backgrounds for cards and sections */
 .bg-tech-gradient {
-  background: linear-gradient(135deg, rgb(30, 34, 39) 0%, rgb(14, 16, 20) 100%);
+  background: linear-gradient(135deg, #111936 0%, #0B0D20 100%);
 }
 
 .border-tech {
@@ -212,23 +225,44 @@
 
 /* Tech-inspired accent border */
 .accent-border {
-  @apply border-l-2 border-teal pl-3;
+  @apply border-l-2 border-zentrix-accent1 pl-3;
 }
 
 /* Modern styling for indicators */
 .trend-up {
-  color: #33C17E;
+  color: #B1FF36;
   display: flex;
   align-items: center;
 }
 
 .trend-down {
-  color: #E61E3C;
+  color: #F24E76;
   display: flex;
   align-items: center;
 }
 
 /* Focus styles */
 .focus-tech {
-  @apply focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-1 focus:ring-offset-charcoal;
+  @apply focus:outline-none focus:ring-2 focus:ring-zentrix-accent1 focus:ring-offset-1 focus:ring-offset-zentrix-background;
+}
+
+/* Zentrix-theme specific styles */
+.zentrix-card {
+  @apply bg-zentrix-card rounded-lg border border-white/5 shadow-lg p-5;
+}
+
+.zentrix-highlight {
+  @apply text-zentrix-accent1 font-medium;
+}
+
+.zentrix-outline {
+  @apply border border-zentrix-accent1/30 rounded-md p-0.5;
+}
+
+.zentrix-glow {
+  filter: drop-shadow(0 0 5px rgba(177, 255, 54, 0.5));
+}
+
+.zentrix-glow:hover {
+  filter: drop-shadow(0 0 10px rgba(177, 255, 54, 0.8));
 }

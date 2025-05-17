@@ -21,31 +21,31 @@ export const InsightCard = ({
   const getIcon = () => {
     switch (type) {
       case 'info':
-        return <TrendingUp className="h-5 w-5 text-slate" />;
+        return <TrendingUp className="h-5 w-5 text-zentrix-accent2" />;
       case 'warning':
-        return <AlertCircle className="h-5 w-5 text-expense" />;
+        return <AlertCircle className="h-5 w-5 text-zentrix-accent4" />;
       case 'success':
-        return <TrendingDown className="h-5 w-5 text-revenue" />;
+        return <TrendingDown className="h-5 w-5 text-zentrix-accent1" />;
       default:
-        return <AlertCircle className="h-5 w-5 text-slate" />;
+        return <AlertCircle className="h-5 w-5 text-zentrix-accent2" />;
     }
   };
   
   const getBgColor = () => {
     switch (type) {
       case 'info':
-        return 'bg-teal-dark/30';
+        return 'bg-zentrix-accent2/20';
       case 'warning':
-        return 'bg-expense-dark/30';
+        return 'bg-zentrix-accent4/20';
       case 'success':
-        return 'bg-revenue-dark/30';
+        return 'bg-zentrix-accent1/20';
       default:
-        return 'bg-teal-dark/30';
+        return 'bg-zentrix-accent2/20';
     }
   };
 
   return (
-    <div className="border-tech rounded-lg p-5 tech-card animate-fade-in">
+    <div className="border border-white/5 rounded-lg p-5 tech-card animate-fade-in bg-zentrix-card shadow-lg">
       <div className="flex items-start">
         <div className={`p-2 rounded-lg ${getBgColor()} mr-4`}>
           {getIcon()}
@@ -59,10 +59,10 @@ export const InsightCard = ({
             variant="ghost" 
             size="sm" 
             onClick={onAction}
-            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-teal"
+            className="text-sm p-0 hover:bg-transparent hover:underline hover:text-zentrix-accent1 group"
           >
             {actionText}
-            <ArrowRight className="ml-1 h-3 w-3" />
+            <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
           </RoundButton>
         </div>
       </div>
